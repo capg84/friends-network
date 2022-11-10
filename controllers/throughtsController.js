@@ -37,4 +37,41 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+  //PUT to update a thought
+  updateOneThought(req, res) {
+    Thoughts.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $set: req.body },
+      { runValidators: true, New: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: "No user found" })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+  //DELETE a thought
+  deleteUserThought(req, res) {
+    Thoughts.findByIdAndDelete({ _id: req.params.thoughtId })
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "Thought not found" })
+          : Users.findOneAndUpdate(
+              { thoughts: req.params.thoughtsId },
+              { $pull: { thought: req.params.thoughtId } },
+              { new: true }
+            )
+      )
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: "No user found for the thought deleted" })
+          : res.json({ message: "Thought deleted and user updated" })
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
