@@ -32,3 +32,5 @@ router.route("/userId/friends/:friendId").post(addFriend);
 
 //DELETE an existing friend
 router.route("/userId/friends/:friendId").delete(deleteFriend);
+
+module.exports = router;
