@@ -12,7 +12,7 @@ const usersSchema = new Schema(
       type: String,
       unique: true,
       required: true,
-      validate: [validateEmail, "Please enter a valid email address"],
+      // validate: [validateEmail, "Please enter a valid email address"], //define validateEmail function
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         "Please enter a valid email address",
@@ -43,6 +43,6 @@ usersSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const Users = model(Users, usersSchema);
+const Users = model("Users", usersSchema);
 
 module.exports = Users;

@@ -70,7 +70,7 @@ const thoughtsSchema = new Schema(
   }
 );
 
-thoughtsSchema.virutal("reactionsCount").get(function () {
+thoughtsSchema.virtual("reactionsCount").get(function () {
   return this.reactions.length;
 });
 
