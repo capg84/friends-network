@@ -16,19 +16,19 @@ const {
 router.route("/").get(getAllThoughts);
 
 //GET single thought
-router.route("/:thoughtsId").get(getSingleThought);
+router.route("/:thoughtId").get(getSingleThought);
 
 //POST a new thought
 router.route("/").post(creatThought);
 
 //UPDATE one thought
-router.route("/:thoughtsId").put(updateOneThought);
+router.route("/:thoughtId").put(updateOneThought);
 
 //DELETE one thought
-router.route("/:thoughtsId").delete(deleteUserThought);
+router.route("/:thoughtId").delete(deleteUserThought);
 
 //POST reaction to thoughts
-router.route("/:thoughtsId/reactions").post(reactionCreate);
+router.route("/:thoughtId/reactions").post(reactionCreate);
 
 //DELETE reaction
 router.route("/:thoughtsId/reactions/:reactionId").delete(reactionDelete);
